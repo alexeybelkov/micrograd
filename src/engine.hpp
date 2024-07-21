@@ -17,11 +17,10 @@ public:
         std::swap(this->grad_, val.grad_);
     }
 
-    template <typename RhsScalarT,
-              typename ReturnT = decltype(std::declval<ScalarT>() + std::declval<RhsScalarT>())
-    > auto operator+(const Value<RhsScalarT>& val) const -> Value<ReturnT> {
-
-        return Value<ReturnT>(static_cast<ReturnT>(this->data_ + val.data()));
+    template <typename RhsScalarT>
+    auto operator+(const Value<RhsScalarT>& val) const {
+        using ReturnScalarT = decltype(this->data_ + val.data());
+        return Value<ReturnScalarT>(this->data_ + val.data(), 0.0, Operation::Add);
     }
     Value operator-(const Value& val) const {
         return Value(this->data_ - val.data_);

@@ -1,1 +1,1 @@
-enum Operation { None, Add, Sub, Mul, Div, Pow };
+enum Operation : uint8_t { None, Add, Sub, Mul, Div, Pow };
